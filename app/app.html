@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PdfCraft</title>
+<link rel="stylesheet" href="/api/dsh-pdfcraft/vendor/web/pdf_viewer.css">
+<style>
+  /* The viewer chrome: a scroll container filling the iframe viewport. All
+     page styling comes from the vendor pdf_viewer.css (.pdfViewer .page). */
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: #2b2b31;
+  }
+  @media (prefers-color-scheme: light) {
+    html, body { background: #808086; }
+  }
+  #pc-container {
+    position: absolute;
+    inset: 0;
+    overflow: auto;
+  }
+  #pc-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font: 13px/1.6 system-ui, sans-serif;
+    text-align: center;
+    white-space: pre-wrap;
+    word-break: break-all;
+    pointer-events: none;
+  }
+  #pc-overlay[hidden] { display: none; }
+</style>
+</head>
+<body>
+  <div id="pc-container" tabindex="0">
+    <div id="pc-viewer" class="pdfViewer"></div>
+  </div>
+  <div id="pc-overlay" hidden></div>
+  <script type="module" src="/api/dsh-pdfcraft/app.js"></script>
+</body>
+</html>

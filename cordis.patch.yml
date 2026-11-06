@@ -1,0 +1,7 @@
+# dsh-pdfcraft bundle patch
+
+- insert:
+    - id: pdfcraft
+      name: 'dsh-pdfcraft-plugin'
+      config:
+        enabled: true

@@ -1,0 +1,79 @@
+{
+  "name": "dsh-pdfcraft-plugin",
+  "description": "PdfCraft PDF reader plugin for DeepSeek Harness: embed the official PDF.js viewer components in a right-sidebar tab, read workspace .pdf files (search / page nav / zoom), and reveal them on disk.",
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": "^22.13.0 || >=24.0.0"
+  },
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-connection"
+      ],
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "scripts": {
+    "fetch-pdfjs": "node scripts/fetch-pdfjs.mjs",
+    "build": "npm run build:server && npm run build:client",
+    "build:server": "tsc -p tsconfig.server.json",
+    "build:client": "node esbuild.config.mjs",
+    "setup": "npm install && npm run fetch-pdfjs && npm run build",
+    "test": "node test/routes.mjs && node test/client-apply.mjs"
+  },
+  "files": [
+    "lib/**/*.js",
+    "src",
+    "app",
+    "static",
+    "icon.svg",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hfanshu/dsh-pdfcraft.git"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "pdfcraft",
+    "pdf",
+    "pdfjs",
+    "viewer"
+  ],
+  "dependencies": {
+    "@deepseek-ai/cosmokit": "~1.8.6",
+    "@deepseek-ai/schemastery": "^3.18.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "esbuild": "^0.28.2",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "typescript": "^7.0.2"
+  }
+}
